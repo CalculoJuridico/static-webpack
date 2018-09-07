@@ -32,13 +32,18 @@ img(src=require('img/js-logo.svg'))
 ```
 
 ### SASS -> CSS
-You can find styles in `src/styles`. You should
+You can find styles in `src/styles`.
 
-### Referencing images, videos and other media in SASS/CSS
+### Referencing images, videos and other media in SASS/SCSS/CSS
 
-TODO
+Images are located in `src/assets/img` and should be required like this:
+```css
+.example {
+  background-image: url('img/js-logo.svg');
+}
+```
 
-### Referencing fonts in SASS/CSS
+### Referencing fonts in SASS/SCSS/CSS
 
 Fonts are located in `static/fonts` and should be referenced like this:
 ```css

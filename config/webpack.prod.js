@@ -110,6 +110,12 @@ module.exports = {
                         }
                     },
                     {
+                      loader: 'resolve-url-loader',
+                      options: {
+                        sourceMap: true
+                      }
+                    },
+                    {
                         loader: 'sass-loader',
                         options: {
                             outputStyle: 'compressed'
