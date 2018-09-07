@@ -8,17 +8,12 @@ module.exports = {
     // you're using any other extension be sure to install the
     // appropiate loader.
     // https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md
-    extension: 'hbs',
+    extension: 'pug',
     // 'body', 'head' or false
     inject: 'body',
     // Static site pages to generate
-    pages: [{
-            title: 'Home',
-            filename: 'index' // Make sure to write it extensionless
-        },
-        {
-            title: 'About',
-            filename: 'about'
-        }
+    pages: [
+        { filename: 'index', title: 'Home' },
+        { filename: 'about', title: 'About' }
     ]
 };

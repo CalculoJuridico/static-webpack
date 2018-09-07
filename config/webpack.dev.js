@@ -20,7 +20,7 @@ module.exports = {
     devtool: config.dev.devtool,
     resolve: {
         alias: {
-            'img': utils.resolve('src/assets/images'),
+            'img': utils.resolve('src/assets/img'),
             'media': utils.resolve('src/assets/media'),
             'assets': utils.resolve('src/assets'),
             '@': utils.resolve('src/scripts'),
