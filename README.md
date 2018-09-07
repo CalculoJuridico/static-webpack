@@ -10,10 +10,24 @@ A basic Webpack configuration to create simple static sites with Pug/Jade/HTML a
 git clone https://github.com/CalculoJuridico/static-webpack
 ```
 
-### Install Dependencies
+#### Install Dependencies
 
 ```
 yarn install
+```
+
+#### Running development
+
+This enables webpack-dev-server for Hot Module Replacement. It also uses browser-sync for a quick way of accessing your site from an external IP. [See more browser-sync options](https://browsersync.io/docs/options).
+
+```
+yarn dev
+```
+
+#### Running in production
+
+```
+yarn build
 ```
 
 ## Project structure
@@ -50,20 +64,6 @@ Fonts are located in `static/fonts` and should be referenced like this:
 @font-face {
   src: url('/fonts/open-sans-regular.woff2') format('woff2');
 }
-```
-
-### For Development
-
-This enables webpack-dev-server for Hot Module Replacement. It also uses browser-sync for a quick way of accessing your site from an external IP. [See more browser-sync options](https://browsersync.io/docs/options).
-
-```
-yarn dev
-```
-
-### For Production
-
-```
-yarn build
 ```
 
 ## Featured Dependencies
