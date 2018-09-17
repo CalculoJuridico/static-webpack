@@ -40,6 +40,7 @@
     },
     "dependencies": {
         "normalize.css": "^8.0.0",
-        "resolve-url-loader": "^2.3.0"
+        "resolve-url-loader": "^2.3.0",
+        "svg-sprite-loader": "^3.9.2"
     }
 }

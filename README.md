@@ -16,7 +16,7 @@ git clone https://github.com/CalculoJuridico/static-webpack
 yarn install
 ```
 
-#### Running development
+#### Running in development
 
 This enables webpack-dev-server for Hot Module Replacement. It also uses browser-sync for a quick way of accessing your site from an external IP. [See more browser-sync options](https://browsersync.io/docs/options).
 
@@ -42,8 +42,31 @@ When **adding a new page** you should add it to the list in `config/pages.config
 
 Images are located in `src/assets/img` and should be required like this:
 ```pug
-img(src=require('img/js-logo.svg'))
+img(src=require('img/my-image.jpg'))
 ```
+
+### Referencing SVG images in Pug/Jade/HTML
+
+This project uses [SVG Sprite Loader](https://www.npmjs.com/package/svg-sprite-loader) to inject SVGs only once in the HTML and reuse them in multiple pages.
+Follow these steps to add a SVG image to the project.
+
+1. Add the SVG file to `src/assets/img`. Example: `src/assets/img/logo.svg`
+2. Add a import instruction to `main.js` like this:
+```js
+import logo from 'assets/img/logo.svg';
+```
+3. On the template file add a require directive in the top of the file.
+Then add the the `<svg>` and `<use>` tags where the image should be placed.
+Also add a height and/or width since a SVG has no fixed dimensions.
+```
+- logo = require('img/logo.svg')
+...
+div
+  ...
+  svg(viewBox=logo.viewBox width="200")
+    use(xlink:href='#' + logo.id)
+```
+
 
 ### SASS -> CSS
 You can find styles in `src/styles`.
@@ -53,7 +76,7 @@ You can find styles in `src/styles`.
 Images are located in `src/assets/img` and should be required like this:
 ```css
 .example {
-  background-image: url('img/js-logo.svg');
+  background-image: url('img/my-image.jpg');
 }
 ```
 
@@ -66,6 +89,11 @@ Fonts are located in `static/fonts` and should be referenced like this:
 }
 ```
 
+### Referencing SVG images in SASS/SCSS/CSS
+
+Please avoid referencing SVG files in CSS files since this disables the possibility of styling its contents.
+Also, you might need to add the [SpriteLoaderPlugin](https://www.npmjs.com/package/svg-sprite-loader#extract-configuration) if you decide to go this route.
+
 ## Featured Dependencies
 
 Besides browser-sync and webpack-dev-server, this projects ships with some cool dependencies.
@@ -73,3 +101,9 @@ Besides browser-sync and webpack-dev-server, this projects ships with some cool 
 -   [postcss-loader](https://github.com/postcss/postcss-loader)
 -   [css-mqpacker](https://github.com/hail2u/node-css-mqpacker) (postcss plugin)
 -   [normalize.css](https://github.com/necolas/normalize.css/)
+
+## Screenshots
+
+In the example page there are a SVG image and a JPG image. Please read the previous sections to see how to work with them.
+
+![screenshot](static/screenshot.png)

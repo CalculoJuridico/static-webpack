@@ -82,7 +82,7 @@ module.exports = {
                 loader: 'html-loader'
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: [{
                         loader: MiniCssExtractPlugin.loader
                     },
@@ -124,12 +124,16 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                test: /\.(png|jpe?g|gif)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
                     name: 'img/[name].[hash:7].[ext]'
                 }
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader'
             },
             {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,

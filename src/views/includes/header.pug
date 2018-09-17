@@ -1,3 +1,6 @@
+- logo = require('img/logo.svg')
 header
   h1 Header
-  img(src=require('img/js-logo.svg') alt='js logo' width='200')
+  svg(viewBox=logo.viewBox width="200")
+    use(xlink:href='#' + logo.id)
+  img(src=require('img/cat.jpg') alt='js logo' width='200')
