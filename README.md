@@ -89,6 +89,27 @@ Fonts are located in `static/fonts` and should be referenced like this:
 }
 ```
 
+### CSS Modules
+
+You can use CSS Modules either with CSS or SASS by following these steps:
+1. Create a stylesheet with extension `.module.css` or `.module.scss` (for SASS support), for example:
+```css
+p.cssModuleClass { color: red; }
+```
+2. Import it in `scripts/main.js`:
+```js
+import 'styles/components/home.module.scss';
+```
+3. In the template you want to use the styles inject the stylesheet like this:
+```pug
+block content
+  - const homeCSS = require('!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]!resolve-url-loader!sass-loader!../../styles/components/home.module.scss');
+  p(class=homeCSS.locals.cssModuleClass)
+    | This paragraph has been styled with CSS Modules!
+```
+4. Load the page in your browser and verify that the CSS module is working!
+![css-modules](static/css-modules.png)
+
 ### Referencing SVG images in SASS/SCSS/CSS
 
 Please avoid referencing SVG files in CSS files since this disables the possibility of styling its contents.
