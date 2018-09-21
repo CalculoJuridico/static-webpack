@@ -1,4 +1,9 @@
 extends layout.pug
 
 block content
+  - const homeCSS = require('!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]!resolve-url-loader!sass-loader!../../styles/components/home.module.scss');
   h1 Homepage
+  p(class=homeCSS.locals.cssModuleClass)
+    | This paragraph has been styled with CSS Modules!
+
+

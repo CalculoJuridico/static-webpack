@@ -67,17 +67,17 @@ module.exports = {
                 test: /\.html$/,
                 loader: 'html-loader'
             },
+            // CSS (except modules)
             {
-                test: /\.s?css$/,
-                use: [{
-                        loader: 'style-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    },
+                test: /\.css$/,
+                exclude: /\.module\.css$/,
+                use: [
+                    'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
+                            importLoaders: 2,
+                            modules: false,
                             sourceMap: true
                         }
                     },
@@ -97,8 +97,120 @@ module.exports = {
                     {
                       loader: 'resolve-url-loader',
                       options: {
-                        sourceMap: true
+                          sourceMap: true
                       }
+                    }
+                ]
+            },
+            // CSS Modules
+            {
+                test: /\.module.css$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            localIdentName: '[name]__[local]___[hash:base64:5]',
+                            modules: true,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            plugins: loader => [
+                                require('autoprefixer'),
+                                require('postcss-pxtorem')({
+                                    propList: ['*'],
+                                    mediaQuery: true
+                                })
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'resolve-url-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            // SCSS (except modules)
+            {
+                test: /\.scss$/,
+                exclude: /\.module\.scss$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 3,
+                            modules: false,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            plugins: loader => [
+                                require('autoprefixer'),
+                                require('postcss-pxtorem')({
+                                    propList: ['*'],
+                                    mediaQuery: true
+                                })
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'resolve-url-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            outputStyle: 'expanded',
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            // SCSS + CSS Modules
+            {
+                test: /\.module.scss$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 3,
+                            localIdentName: '[name]__[local]___[hash:base64:5]',
+                            modules: true,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            plugins: loader => [
+                                require('autoprefixer'),
+                                require('postcss-pxtorem')({
+                                    propList: ['*'],
+                                    mediaQuery: true
+                                })
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'resolve-url-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     },
                     {
                         loader: 'sass-loader',
@@ -110,16 +222,16 @@ module.exports = {
                 ]
             },
             {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader'
+            },
+            {
                 test: /\.(png|jpe?g|gif)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
                     name: 'dist/img/[name].[ext]'
                 }
-            },
-            {
-                test: /\.svg$/,
-                loader: 'svg-sprite-loader'
             },
             {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,

@@ -1,4 +1,5 @@
-import logo from 'assets/img/logo.svg';
+import 'assets/img/logo.svg';
+import 'styles/components/home.module.scss';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Do something
